@@ -13,6 +13,8 @@ public class Person {
     private int phone;
     private eWallet wallet;
 
+    /** is the parametrized constructor of the Person class
+     */
     public Person(){
         this.name = "";
         this.ID = 0;
@@ -22,6 +24,8 @@ public class Person {
         this.wallet = new eWallet();
     }
 
+    /** is the parametrized constructor of the Person class
+     */
     public Person(String name, int ID, String email, String password, String location, int phone, eWallet wallet){
     this.name = name;
     this.ID = ID;
