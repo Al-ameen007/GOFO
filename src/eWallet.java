@@ -5,14 +5,14 @@ public class eWallet {
         this.balance = 0;
     }
 
-    public eWallet(int balnce){
-        this.balance = balnce;
+    public eWallet(int balance){
+        this.balance = balance;
     }
 
     /**
-     * @return the balnce of the eWallet
+     * @return the balance of the eWallet
      */
-    public double getBalance() {
+    public double checkBalance() {
         return balance;
     }
 
@@ -23,14 +23,22 @@ public class eWallet {
         this.balance = balance;
     }
 
-
+/*
     public void transfer(int amt, int ID){
         Person p = new Person();
-        if(p.getID() == ID){
-            p.getWallet().balance += amt;
+        if (amt > this.balance){
+            throw new ArithmeticException("Not enough balance");
+        }else{
+            if(p.getID() == ID){
+                p.getWallet().balance += amt;
+                this.balance -= amt;
+            }else{
+                throw new RuntimeException("Not found");
+            }
         }
-    }
 
+    }
+*/
     /** displays the information of the eWallet
      * @Override
      */
