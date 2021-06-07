@@ -35,10 +35,9 @@ public class Player extends Person{
         this.setEmail(email);
         this.setPassword(password);
         this.setLocation(location);
-        //this.setPhone(phone);
+        this.setPhone(phone);
     }
     public void bookPlayground(){
 
     }
-
 }
