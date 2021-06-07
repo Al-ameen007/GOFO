@@ -6,27 +6,27 @@
 
 public class Person {
     private String name;
-    private int ID;
+    private String ID;
     private String email;
     private String password;
     private String location;
-    private int phone;
+    private String phone;
     private eWallet wallet;
 
     /** is the parametrized constructor of the Person class
      */
     public Person(){
         this.name = "";
-        this.ID = 0;
+        this.ID = "";
         this.email = "";
         this.password = "";
-        this.phone = 0;
+        this.phone = "";
         this.wallet = new eWallet();
     }
 
     /** is the parametrized constructor of the Person class
      */
-    public Person(String name, int ID, String email, String password, String location, int phone, eWallet wallet){
+    public Person(String name, String ID, String email, String password, String location, String phone, eWallet wallet){
     this.name = name;
     this.ID = ID;
     this.email = email;
@@ -45,7 +45,7 @@ public class Person {
     /**
      * @return the ID of the person
      */
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
@@ -73,7 +73,7 @@ public class Person {
     /**
      * @return the phone number of the person
      */
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -94,7 +94,7 @@ public class Person {
     /** Assigns the ID of person to ID
      * @param ID is the ID of the person
      */
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -122,7 +122,7 @@ public class Person {
     /** Assigns the phone number of person to phone
      * @param phone is the phone of the person
      */
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
