@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Owner extends Person{
      private ArrayList<Playground> playgrounds = new ArrayList<Playground>();
-     private OwnerDB request;
+     private Database request;
      public int counter =0;
      public boolean registerPlayground(String name, String location, String size, float price, float totalHR){
           playgrounds.get(counter).setName(name);
