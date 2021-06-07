@@ -9,23 +9,32 @@ public class Owner extends Person{
           playgrounds.get(counter).setLocation(location);
           playgrounds.get(counter).setSize(size);
           playgrounds.get(counter).setPrice(price);
-          playgrounds.get(counter).setTotalHR(totalHR);
+          playgrounds.get(counter).setTotalAvailableHoursToBook(totalHR);
           counter++;
           return true;
      }
-     public boolean editPlayGround(String choice,String name,Object var ){
+
+     public boolean editPlayGround(String choice,String name,String var ){
+          for(int i=0;i<=counter;i++){
+               if(name == playgrounds.get(i).getName()) {
+                    if (choice.equals("name")) {
+                         playgrounds.get(i).setName(var);
+                    } else if (choice.equals("location")) {
+                         playgrounds.get(i).setLocation(var);
+                    } else if (choice.equals("size")) {
+                         playgrounds.get(i).setSize(var);
+                    }
+               }
+          }
+          return true;
+     }
+     public boolean editPlayGround(String choice,String name,float var ){
           for(int i=0;i<=counter;i++){
                if(name == playgrounds.get(i).getName()){
-                    if(choice.equals("name")){
-                         playgrounds.get(i).setName(var);
-                    }else if(choice.equals("location")){
-                         playgrounds.get(i).setLocation(var);
-                    }else if(choice.equals("size")){
-                         playgrounds.get(i).setSize(var);
-                    }else if(choice.equals("price")){
+                    if(choice.equals("price")){
                          playgrounds.get(i).setPrice(var);
                     }else if(choice.equals("totalHR")){
-                         playgrounds.get(i).setTotalHR(var);
+                         playgrounds.get(i).setTotalAvailableHoursToBook(var);
                     }
                }
           }
@@ -36,14 +45,14 @@ public class Owner extends Person{
                int num=i+1;
                System.out.println("Playground number: " + num);
                System.out.println("Name: " + playgrounds.get(i).getName());
-               System.out.println("Location: " + playgrounds.get(i).getlocation());
+               System.out.println("Location: " + playgrounds.get(i).getLocation());
                System.out.println("Size: " +  playgrounds.get(i).getSize());
                System.out.println("Price: " +  playgrounds.get(i).getPrice());
-               System.out.println("Total hours available per day: " + playgrounds.get(i).getTotalHR());
+               System.out.println("Total hours available per day: " + playgrounds.get(i).getTotalAvailableHoursToBook());
                System.out.println("====================================");
           }
      }
-     public Owner signUp(String name,String email,String password,String location,int phone){
+     public Owner signUp(String name,String email,String password,String location,String phone){
           Owner owner = new Owner();
           owner.setName(name);
           owner.setEmail(email);
