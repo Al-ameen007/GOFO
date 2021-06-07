@@ -37,12 +37,12 @@ public class eWallet {
      * @param amt is the amount to be transferred
      * @param ID is the ID of the owner of the eWallet
      */
-    public void transfer(int amt, int ID){
+    public void transfer(int amt, String ID){
         Person p = new Person();
         if (amt > this.balance){
             throw new ArithmeticException("Not enough balance");
         }else{
-            if(p.getID() == ID){
+            if(p.getID().equalsIgnoreCase(ID)){
                 p.getWallet().balance += amt;
                 this.balance -= amt;
             }else{

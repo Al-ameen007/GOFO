@@ -84,7 +84,7 @@ public class Playground extends Database{
     }
 
     /**
-     * status could be: booked, available, suspended
+     * status could be: active, suspended
      * @return the status of the playground
      */
     public String getStatus() {
@@ -154,15 +154,7 @@ public class Playground extends Database{
         this.owner = owner;
     }
 
-    /**
-     * @param name is the name of the chosen playground
-     * @return the playground that was chosen
-     */
-    public Playground choosePlayground(String name){
-        for (int i = 0; i < playgrounds.size(); i++){
-            if (plagrounds[i].getName == name) return playground[i];
-        }
-    }
+
 
     /** displays the information of the playground
      * @Override
