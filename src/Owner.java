@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+public class Owner extends Person{}
 
-public class Owner extends Person{
+/*public class Owner extends Person{
      private ArrayList<Playground> playgrounds = new ArrayList<Playground>();
      private Database request;
      public int counter =0;
@@ -62,4 +63,4 @@ public class Owner extends Person{
           request.saveData(owner);
           return owner;
      }
-}
+}*/
