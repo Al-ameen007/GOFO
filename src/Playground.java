@@ -17,7 +17,7 @@ public class Playground implements Comparable<Playground> {
     private float cancellationPeriod;
     private int totalAvailableHoursToBook;
     private String status;
-    //private Owner owner;
+    private Owner owner;
 
     /**
      * default constructor for the Playground class
@@ -30,13 +30,13 @@ public class Playground implements Comparable<Playground> {
         this.cancellationPeriod = 0.0f;
         this.totalAvailableHoursToBook = 0;
         this.status = "";
-        //this.owner = new Owner();
+        this.owner = new Owner();
     }
 
     /**
      * is the parametrized constructor of the Playground class
      */
-    public Playground(String name, String location, String size, float price, float cancellationPeriod, int totalAvailableHoursToBook, String status) {
+    public Playground(String name, String location, String size, float price, float cancellationPeriod, int totalAvailableHoursToBook, String status , Owner owner) {
         this.name = name;
         this.location = location;
         this.size = size;
@@ -45,7 +45,7 @@ public class Playground implements Comparable<Playground> {
         this.totalAvailableHoursToBook = totalAvailableHoursToBook;
         this.status = status;
         Database.playgrounds.add(this);
-        //this.owner = owner;
+        this.owner = owner;
     }
 
 
@@ -103,9 +103,9 @@ public class Playground implements Comparable<Playground> {
     /**
      * @return the owner of the playground
      */
-    /*public Owner getOwner() {
+    public Owner getOwner() {
         return owner;
-    }*/
+    }
 
     /**
      * Assigns the name of the playground to name
@@ -175,9 +175,9 @@ public class Playground implements Comparable<Playground> {
      *
      * @param //owner is the owner of the playground
      */
-    /*public void setOwner(Owner owner) {
+    public void setOwner(Owner owner) {
         this.owner = owner;
-    }*/
+    }
     public int compareTo(Playground comparesTo) {
         int compareTotalAvailableHoursToBook = ((Playground) comparesTo).getTotalAvailableHoursToBook();
         return compareTotalAvailableHoursToBook - this.getTotalAvailableHoursToBook();
