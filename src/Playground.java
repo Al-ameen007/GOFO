@@ -144,7 +144,7 @@ public class Playground implements Comparable<Playground> {
     }
 
     /**
-     * Assigns the totalAvailableHoursToBook of the playground to totalAvailableHoursToBook
+     * Assigns  the totalAvailableHoursToBook of the playground to totalAvailableHoursToBook
      *
      * @param totalAvailableHoursToBook is the total hours available that can be booked
      */
