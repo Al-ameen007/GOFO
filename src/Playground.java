@@ -14,11 +14,14 @@ public class Playground implements Comparable<Playground> {
     private String name;
     private String location;
     private String size;
-    private float price;
+    private int price;
     private float cancellationPeriod;
     private int totalAvailableHoursToBook;
     private String status;
     private Owner owner;
+    private ArrayList<LocalTime> timeSlot = new ArrayList<>();
+    private int startTime;
+    private int endTime;
 
     /**
      * default constructor for the Playground class
@@ -27,17 +30,19 @@ public class Playground implements Comparable<Playground> {
         this.name = "";
         this.location = "";
         this.size = "";
-        this.price = 0.0f;
+        this.price = 0;
         this.cancellationPeriod = 0.0f;
         this.totalAvailableHoursToBook = 0;
         this.status = "";
         this.owner = new Owner();
+        this.startTime = 0;
+        this.endTime = 0;
     }
 
     /**
      * is the parametrized constructor of the Playground class
      */
-    public Playground(String name, String location, String size, float price, float cancellationPeriod, int totalAvailableHoursToBook, String status , Owner owner) {
+    public Playground(String name, String location, String size, int price, float cancellationPeriod, int totalAvailableHoursToBook, String status , Owner owner , int start, int end) {
         this.name = name;
         this.location = location;
         this.size = size;
@@ -45,8 +50,31 @@ public class Playground implements Comparable<Playground> {
         this.cancellationPeriod = cancellationPeriod;
         this.totalAvailableHoursToBook = totalAvailableHoursToBook;
         this.status = status;
-        Database.playgrounds.add(this);
         this.owner = owner;
+        this.startTime = start;
+        this.endTime = end;
+        if (end < start){
+            int i = start;
+            while (i != end){
+                if(i >= 24){i = i -24;}
+                timeSlot.add(LocalTime.of(i , 0));
+                i++;
+            }
+        }else if(end == start){
+            int i = 0;
+            while (i < 24){
+                if(start >= 24){start = start -24;}
+                timeSlot.add(LocalTime.of(start , 0));
+                start++;
+                i++;
+            }
+        }
+        else{
+            for (int i=start; i<end; i++){
+                timeSlot.add(LocalTime.of(i , 0));
+            }
+        }
+        Database.playgrounds.add(this);
     }
 
     /**
@@ -73,7 +101,7 @@ public class Playground implements Comparable<Playground> {
     /**
      * @return the pricing of the playground
      */
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -160,7 +188,7 @@ public class Playground implements Comparable<Playground> {
      *
      * @param price is the price of the playground
      */
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
