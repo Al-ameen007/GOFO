@@ -1,11 +1,25 @@
 import java.util.*;
+import java.time.LocalTime;
+
+/**
+ * This class is the playground that players will book
+ *
+ * @author Mahmoud Gamal , Mohammad Alameen
+ * @version 1.0
+ * @since 7 June 2021
+ */
 
 public class Player extends Person {
     private String accType = "Player";
+    private Playground selectedPG = new Playground();
     private ArrayList<Player> friend = new ArrayList<Player>();
     private ArrayList<Player> favTeam = new ArrayList<Player>();
-    private ArrayList<Booking> bookings = new ArrayList<Booking>();
+    private ArrayList<Request> requests = new ArrayList<Request>();
 
+    /**
+     * adds a player to the list of friends
+     * @param id is the id of the selected player to be added
+     */
     public void addFriend(String id) {
         int n = Database.players.size();
         for (int i = 0; i < n; i++) {
@@ -30,8 +44,12 @@ public class Player extends Person {
         }
     }
 
-    public void addBooking(Booking myBooking) {
-        bookings.add(myBooking);
+    /**
+     * adds a request to the list of requests
+     * @param myRequest is the request sent to book a playground
+     */
+    public void addRequest(Request myRequest) {
+        requests.add(myRequest);
     }
 
     /**
@@ -41,6 +59,9 @@ public class Player extends Person {
         return friend;
     }
 
+    /**
+     * @return the favourite team of the player
+     */
     public ArrayList<Player> getFavTeam() {
         return favTeam;
     }
@@ -144,8 +165,35 @@ public class Player extends Person {
         return temp;
     }
 
-    public void book(Playground p){
+    /**
+     * sends an invite to the player's favourite team
+     */
+    public void invite(){
+        System.out.println("Invitation sent");
+    }
 
+    /**
+     * books the playground and transfer the money to the owner
+     * @param p is the playground that the player want to book
+     * @param start is the start hour of the reservation
+     * @param numOfHours is the length of the reservation
+     */
+    public void book(Playground p, int start, int numOfHours) {
+        this.getWallet().transfer(selectedPG.getPrice()*numOfHours, selectedPG.getOwner().getID());
+        for (int i =0 ; i < numOfHours; i++){
+            selectedPG.getTimeSlot().remove(LocalTime.of(start,0));
+            start++;
+        }
+        int tep = selectedPG.getTotalAvailableHoursToBook()-numOfHours;
+        selectedPG.setTotalAvailableHoursToBook(tep);
+        int n = Database.playgrounds.size();
+        for (int i=0; i<n; i++){
+            if (Database.playgrounds.get(i).getName() == selectedPG.getName()){
+                Database.playgrounds.get(i).setTimeSlot(selectedPG.getTimeSlot());
+                Database.playgrounds.get(i).setTotalAvailableHoursToBook(selectedPG.getTotalAvailableHoursToBook());
+            }
+        }
+        Request myRequest = new Request();
     }
 
     /**
