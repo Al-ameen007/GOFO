@@ -1,9 +1,10 @@
-import javax.xml.crypto.Data;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * This class is the playground that players will book
  *
- * @author Mohammad Alameen
+ * @author Mohammad Alameen, Mahmoud Gamal
  * @version 1.0
  * @since 6 June 2021
  */
@@ -47,7 +48,6 @@ public class Playground implements Comparable<Playground> {
         Database.playgrounds.add(this);
         this.owner = owner;
     }
-
 
     /**
      * @return the name of the playground
@@ -105,6 +105,27 @@ public class Playground implements Comparable<Playground> {
      */
     public Owner getOwner() {
         return owner;
+    }
+
+    /**
+     * @return the start time of the playground
+     */
+    public int getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * @return the end time of the playground
+     */
+    public int getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * @return the timeslot of the playground
+     */
+    public ArrayList<LocalTime> getTimeSlot() {
+        return timeSlot;
     }
 
     /**
@@ -170,6 +191,20 @@ public class Playground implements Comparable<Playground> {
         this.status = status;
     }
 
+    /** Assign the start time of the playground to startTime
+     * @param startTime is the start time of the playground
+     */
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+    /** Assign the end time of the playground to endTime
+     * @param endTime is the end time of the playground
+     */
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
+    }
+
     /**
      * Assigns the owner of the playground to owner
      *
@@ -178,14 +213,25 @@ public class Playground implements Comparable<Playground> {
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
+
+    /**
+     * Assigns the time slot of playground to timeslot
+     * @param timeSlot is the timeslot of the playground
+     */
+    public void setTimeSlot(ArrayList<LocalTime> timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    /** sorts the playgrounds
+     * @param comparesTo
+     * @return the sorted playgrounds
+     */
     public int compareTo(Playground comparesTo) {
         int compareTotalAvailableHoursToBook = ((Playground) comparesTo).getTotalAvailableHoursToBook();
         return compareTotalAvailableHoursToBook - this.getTotalAvailableHoursToBook();
     }
 
-    /**
-     * displays the information of the playground
-     *
+    /** displays the information of the playground
      * @Override
      */
     public String toString() {
@@ -197,7 +243,10 @@ public class Playground implements Comparable<Playground> {
                 ", cancellationPeriod=" + cancellationPeriod +
                 ", totalAvailableHoursToBook=" + totalAvailableHoursToBook +
                 ", status='" + status + '\'' +
-                ", owner=" + //owner +
+                ", owner=" + owner +
+                ", timeSlot=" + timeSlot +
+                ", startTime=" + LocalTime.of(startTime, 0) +
+                ", endTime=" + LocalTime.of(endTime, 0)+
                 '}';
     }
 }
