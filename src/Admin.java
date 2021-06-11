@@ -1,3 +1,11 @@
+/**
+ * This class is the Admin that controls the states of the playgrounds
+ *
+ * @author  Youssef Mohamed
+ * @version 1.0
+ * @since 6 June 2021
+ */
+
 public class Admin extends Person{
 
     /**

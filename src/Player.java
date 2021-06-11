@@ -193,7 +193,7 @@ public class Player extends Person {
                 Database.playgrounds.get(i).setTotalAvailableHoursToBook(selectedPG.getTotalAvailableHoursToBook());
             }
         }
-        Request myRequest = new Request();
+        Request myRequest = new Request(selectedPG);
     }
 
     /**

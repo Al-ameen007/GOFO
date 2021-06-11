@@ -42,14 +42,14 @@ public class Playground implements Comparable<Playground> {
     /**
      * is the parametrized constructor of the Playground class
      */
-    public Playground(String name, String location, String size, int price, float cancellationPeriod, int totalAvailableHoursToBook, String status , Owner owner , int start, int end) {
+    public Playground(String name, String location, String size, int price, float cancellationPeriod, int totalAvailableHoursToBook,  Owner owner , int start, int end) {
         this.name = name;
         this.location = location;
         this.size = size;
         this.price = price;
         this.cancellationPeriod = cancellationPeriod;
         this.totalAvailableHoursToBook = totalAvailableHoursToBook;
-        this.status = status;
+        this.status = "status";
         this.owner = owner;
         this.startTime = start;
         this.endTime = end;
