@@ -1,65 +1,111 @@
 import java.util.ArrayList;
 
-public class Owner extends Person{
-     private ArrayList<Playground> playgrounds = new ArrayList<Playground>();
-     private Database request;
-     public int counter =0;
-     public boolean registerPlayground(String name, String location, String size, float price, float totalHR){
-          playgrounds.get(counter).setName(name);
-          playgrounds.get(counter).setLocation(location);
-          playgrounds.get(counter).setSize(size);
-          playgrounds.get(counter).setPrice(price);
-          playgrounds.get(counter).setTotalAvailableHoursToBook(totalHR);
-          counter++;
-          return true;
-     }
+/**
+ * This class is the Owner that will register their playgrounds
+ *
+ * @author Youssef Mohamed
+ * @version 1.0
+ * @since 6 June 2021
+ */
 
-     public boolean editPlayGround(String choice,String name,String var ){
-          for(int i=0;i<=counter;i++){
-               if(name == playgrounds.get(i).getName()) {
-                    if (choice.equals("name")) {
-                         playgrounds.get(i).setName(var);
-                    } else if (choice.equals("location")) {
-                         playgrounds.get(i).setLocation(var);
-                    } else if (choice.equals("size")) {
-                         playgrounds.get(i).setSize(var);
+public class Owner extends Person {
+    private ArrayList<Playground> playgrounds = new ArrayList<Playground>();
+    private ArrayList<Request> myRequests = new ArrayList<Request>();
+
+
+    public void registerPlayground(String name, String location, String size, int price, float cancellationPeriod, int totalHR, int start, int end) {
+        Playground myPG = new Playground(name, location, size, price, cancellationPeriod, totalHR, this, start, end);
+
+    }
+
+    public void editPlayground(String choice, String name, String var) {
+        int n = playgrounds.size();
+        for (int i = 0; i < n; i++) {
+            if (choice == playgrounds.get(i).getName()) {
+                switch (name) {
+                    case "name": {
+                        playgrounds.get(i).setName(var);
+                        break;
                     }
-               }
-          }
-          return true;
-     }
-     public boolean editPlayGround(String choice,String name,float var ){
-          for(int i=0;i<=counter;i++){
-               if(name == playgrounds.get(i).getName()){
-                    if(choice.equals("price")){
-                         playgrounds.get(i).setPrice(var);
-                    }else if(choice.equals("totalHR")){
-                         playgrounds.get(i).setTotalAvailableHoursToBook(var);
+                    case "location": {
+                        playgrounds.get(i).setLocation(var);
+                        break;
                     }
-               }
-          }
-          return true;
-     }
-     public void displayPlayGrounds() {
-          for(int i=0;i<=counter;i++){
-               int num=i+1;
-               System.out.println("Playground number: " + num);
-               System.out.println("Name: " + playgrounds.get(i).getName());
-               System.out.println("Location: " + playgrounds.get(i).getLocation());
-               System.out.println("Size: " +  playgrounds.get(i).getSize());
-               System.out.println("Price: " +  playgrounds.get(i).getPrice());
-               System.out.println("Total hours available per day: " + playgrounds.get(i).getTotalAvailableHoursToBook());
-               System.out.println("====================================");
-          }
-     }
-     public Owner signUp(String name,String email,String password,String location,String phone){
-          Owner owner = new Owner();
-          owner.setName(name);
-          owner.setEmail(email);
-          owner.setPassword(password);
-          owner.setLocation(location);
-          owner.setPhone(phone);
-          request.saveData(owner);
-          return owner;
-     }
+                    case "size": {
+                        playgrounds.get(i).setSize(var);
+                        break;
+                    }
+                    case "price": {
+                        int val = Integer.parseInt(var);
+                        playgrounds.get(i).setPrice(val);
+                        break;
+                    }
+                    case "totalHR": {
+                        int val = Integer.parseInt(var);
+                        playgrounds.get(i).setTotalAvailableHoursToBook(val);
+                        break;
+                    }
+                    default:{
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void getMyPlaygrounds() {
+        int n = Database.playgrounds.size();
+        for (int i = 0; i < n; i++) {
+            if (Database.playgrounds.get(i).getOwner().getName() == this.getName()) {
+                playgrounds.add(Database.playgrounds.get(i));
+            }
+        }
+    }
+
+    public void displayPlayGrounds() {
+        getMyPlaygrounds();
+        int n = playgrounds.size();
+        for (int i = 0; i < n; i++) {
+            System.out.println(playgrounds.get(i));
+        }
+    }
+
+    public void signUp(String name, String email, String password, String location, String phone) {
+        this.setName(name);
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setLocation(location);
+        this.setPhone(phone);
+        Database.owners.add(this);
+
+    }
+
+    public void addRequest(Request req) {
+        myRequests.add(req);
+    }
+
+    public ArrayList<Request> getMyRequests() {
+        return myRequests;
+    }
+
+    public Request selectReq(int id) {
+        int n = myRequests.size();
+        for (int i = 0; i < n; i++) {
+            if (id == myRequests.get(i).getId()) {
+                return myRequests.get(i);
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public void acceptRequest(Request r) {
+        r.accept();
+    }
+
+    public void declineRequest(Request r) {
+        r.decline();
+    }
 }

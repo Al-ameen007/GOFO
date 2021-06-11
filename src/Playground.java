@@ -275,6 +275,6 @@ public class Playground implements Comparable<Playground> {
                 ", timeSlot=" + timeSlot +
                 ", startTime=" + LocalTime.of(startTime, 0) +
                 ", endTime=" + LocalTime.of(endTime, 0)+
-                '}';
+                '}' + '\n';
     }
 }
