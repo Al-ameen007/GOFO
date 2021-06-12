@@ -10,11 +10,48 @@ import java.time.LocalTime;
  */
 
 public class Player extends Person {
-    private String accType = "Player";
     private Playground selectedPG = new Playground();
     private ArrayList<Player> friend = new ArrayList<Player>();
     private ArrayList<Player> favTeam = new ArrayList<Player>();
     private ArrayList<Request> requests = new ArrayList<Request>();
+
+
+    /**
+     * is a default constructor of player class
+     */
+    public Player(){
+        this.setName("");
+        this.setID("");
+        this.setPassword("");
+        this.setEmail("");
+        this.setPhone("");
+        this.setLocation("");
+        eWallet wallet = new eWallet();
+        this.setWallet(wallet);
+        Database.players.add(this);
+    }
+
+    /**
+     * is a parametrized constructor of player class
+     *
+     * @param name     is the name of the player
+     * @param ID       is the id of the player
+     * @param email    is the email of the player
+     * @param password is the password of the player
+     * @param location is the location of the player
+     * @param phone    is the phone of the player
+     * @param wallet   is the wallet of the player
+     */
+    public void signUp(String name, String ID, String email, String password, String location, String phone, eWallet wallet) {
+        this.setName(name);
+        this.setID(ID);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setPhone(phone);
+        this.setLocation(location);
+        this.setWallet(wallet);
+        Database.players.add(this);
+    }
 
     /**
      * adds a player to the list of friends

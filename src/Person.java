@@ -35,6 +35,7 @@ public class Person {
         this.ID = ID;
         this.email = email;
         this.password = password;
+        this.location = location;
         this.phone = phone;
         this.wallet = wallet;
     }

@@ -13,7 +13,8 @@ public class Request {
 
     /**
      * Used to request a booking for a playground
-     * @param playground
+     *
+     * @param playground is the playground which is requested
      */
     public Request(Playground playground){
         requestedPG = playground;

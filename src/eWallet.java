@@ -7,7 +7,7 @@
  */
 
 public class eWallet {
-    private float balance;
+    private int balance;
 
     /**
      * default constructor of the eWallet class
@@ -26,7 +26,7 @@ public class eWallet {
     /**
      * @return the balance of the eWallet
      */
-    public double checkBalance() {
+    public int checkBalance() {
         return balance;
     }
 
@@ -35,7 +35,7 @@ public class eWallet {
      *
      * @param balance is the balance of the eWallet
      */
-    public void setBalance(float balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 

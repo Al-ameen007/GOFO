@@ -13,6 +13,43 @@ public class Owner extends Person {
     private ArrayList<Request> myRequests = new ArrayList<Request>();
 
     /**
+     * is a default constructor of owner class
+     */
+    public Owner() {
+        this.setName("");
+        this.setID("");
+        this.setPassword("");
+        this.setEmail("");
+        this.setPhone("");
+        this.setLocation("");
+        eWallet wallet = new eWallet();
+        this.setWallet(wallet);
+        Database.owners.add(this);
+    }
+
+    /**
+     * is a parametrized constructor of owner class
+     *
+     * @param name     is the name of the owner
+     * @param ID       is the id of the owner
+     * @param email    is the email of the owner
+     * @param password is the password of the owner
+     * @param location is the location of the owner
+     * @param phone    is the phone of the owner
+     * @param wallet   is the wallet of the owner
+     */
+    public void signUp(String name, String ID, String email, String password, String location, String phone, eWallet wallet) {
+        this.setName(name);
+        this.setID(ID);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setPhone(phone);
+        this.setLocation(location);
+        this.setWallet(wallet);
+        Database.owners.add(this);
+    }
+
+    /**
      * uded to register the owner's playgrounds
      * @param name
      * @param location
@@ -131,7 +168,7 @@ public class Owner extends Person {
      * @param id
      * @return
      */
-    public Request selectReq(int id) {
+    public Request selectRequest(int id) {
         int n = myRequests.size();
         for (int i = 0; i < n; i++) {
             if (id == myRequests.get(i).getId()) {
@@ -147,15 +184,15 @@ public class Owner extends Person {
      * accept request
      * @param r
      */
-    public void acceptRequest(Request r) {
-        r.accept();
+    public void acceptRequest(Request req) {
+        req.accept();
     }
 
     /**
      * decline request
      * @param r
      */
-    public void declineRequest(Request r) {
-        r.decline();
+    public void declineRequest(Request req) {
+        req.decline();
     }
 }
