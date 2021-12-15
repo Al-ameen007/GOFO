@@ -41,6 +41,14 @@ public class Playground implements Comparable<Playground> {
 
     /**
      * is the parametrized constructor of the Playground class
+     * @param name is the name of the playground
+     * @param location is the location of the playground
+     * @param size is the size of the playground
+     * @param price is the price of the playground
+     * @param cancellationPeriod is the cancellation period of the playground
+     * @param totalAvailableHoursToBook is the total abailable hours of the playground
+     * @param owner is the owner of the playground
+     * @param start is the start time of the time slot of the playground
      */
     public Playground(String name, String location, String size, int price, float cancellationPeriod, int totalAvailableHoursToBook, Owner owner, int start) {
         this.name = name;
@@ -236,7 +244,7 @@ public class Playground implements Comparable<Playground> {
     /**
      * Assigns the owner of the playground to owner
      *
-     * @param //owner is the owner of the playground
+     * @param owner is the owner of the playground
      */
     public void setOwner(Owner owner) {
         this.owner = owner;

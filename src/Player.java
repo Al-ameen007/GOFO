@@ -2,7 +2,7 @@ import java.util.*;
 import java.time.LocalTime;
 
 /**
- * This class is the playground that players will book
+ * This class is the player who will book the playground
  *
  * @author Mahmoud Gamal , Mohammad Alameen
  * @version 1.0

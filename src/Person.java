@@ -28,7 +28,14 @@ public class Person {
     }
 
     /**
-     * is the parametrized constructor of the Person class
+     *
+     * @param name is the name of the user
+     * @param ID is the ID of the user
+     * @param email is the email of the user
+     * @param password is the password of the user
+     * @param location is the location of the user
+     * @param phone is the phone of the user
+     * @param wallet is the wallet of the user
      */
     public Person(String name, String ID, String email, String password, String location, String phone, eWallet wallet) {
         this.name = name;
@@ -155,7 +162,6 @@ public class Person {
     /**
      * Displays the information of the person
      *
-     * @Override
      */
     public String toString() {
         return "Person{" +

@@ -18,6 +18,7 @@ public class eWallet {
 
     /**
      * parametrized constructor of the eWallet class
+     * @param balance is the balance that will be added
      */
     public eWallet(int balance) {
         this.balance = balance;
@@ -63,7 +64,6 @@ public class eWallet {
     /**
      * displays the information of the eWallet
      *
-     * @Override
      */
     public String toString() {
         return "eWallet{" +
